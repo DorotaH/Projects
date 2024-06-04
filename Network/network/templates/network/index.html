@@ -1,0 +1,58 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if message %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <div class = "body">
+        <h2>All Posts</h2>
+        {% if user.is_authenticated %}
+            <div class="card" id="new-post">
+                <h4>New Post</h4>
+                <form action="{% url 'index' %}" method="post">
+                    {% csrf_token %}
+                        <textarea class="area" name="post_content" maxlength="150" rows = "7" placeholder="What's on your mind?"></textarea>
+                        <button class="btn btn-primary">Post</button>
+                </form>
+            </div>
+        {% endif %}
+        <div id="posts-view">
+            {% for post in posts %}
+                <div id="div{{ post.id }}" class="card">
+                    <a href="http://127.0.0.1:8000/profile/{{ post.author }}" class="username" id="a{{ post.id }}"><strong>{{ post.author }}</strong></a><br /><br />
+                    {% if post.author == user %}
+                        <a href="#" data-id="{{ post.id }}" class="edit">Edit</a>
+                    {% endif %}
+                    <p id="p{{ post.id }}">{{ post.content }}</p>
+                    <div data-id={{ post.id }} class="likes"></div>
+                    <p style="color: grey" >{{ post.timestamp }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/network.js' %}"></script>
+{% endblock %}

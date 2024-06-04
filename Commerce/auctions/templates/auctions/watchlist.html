@@ -1,0 +1,24 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Watchlist</h2>
+    
+    <div class = "row mx-3">
+        {% if listings|length == 0 %}
+            <p> No items in watchlist </p>
+        {% endif %}
+        {% for listing in listings %}
+            <div class = "card mx-3">
+                <img src="{{ listing.image }}" style ="width: 210px;" class="card-img-top" >
+                <div class = "card-body">
+                    <div class="card-title">
+                        <a style ="font-size: 30px; color: #000; text-decoration: none;" href="{% url 'listing' id=listing.id %}">{{ listing.title }}</a>
+                        <h6>{{ listing.description }}</h6>
+                        <p>Price: {{ listing.starting_bid }}$</p>
+                        <p style="font-size: 10px;">Created {{ listing.created_at }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

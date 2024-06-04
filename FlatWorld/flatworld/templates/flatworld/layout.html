@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}FlatWorld Adventure{% endblock %}</title>
+        <link href="{% static 'flatworld/styles.css' %}" rel="stylesheet">
+        <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+        <script type="module" src="{% static 'flatworld/flatworld.js' %}"></script>
+        {% block script %}{% endblock %}
+    </head>
+    <body>
+
+        <nav class="nav">
+            <a class="nav_item" href="/">Home</a>
+            <a class="nav_item" href="/generateWorld">World</a>
+            <a class="nav_item" href="/song">Song</a>
+            <a class="nav_item" href="/coding">Coding</a>
+            <a class="nav_item" href="/factory">People</a>
+            <a class="nav_item" href="/fence">Fence</a>
+            <a class="nav_item" href="/guards">Guards</a>
+            <a id="reset" class="nav_item_r" href="/" >Reset</a>
+        </nav>
+        
+        <div class="body">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

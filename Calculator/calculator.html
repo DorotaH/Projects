@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-200">
+    <div class="bg-white p-10 rounded shadow">
+        <div class="mb-5">
+            <input type="text" class="w-full p-2 border rounded" disabled>
+        </div>
+        <div class="grid grid-cols-4 gap-2">
+            <button data-number="7" class="col-span-1 p-2 bg-gray-200 rounded">7</button>
+            <button data-number="8" class="col-span-1 p-2 bg-gray-200 rounded">8</button>
+            <button data-number="9" class="col-span-1 p-2 bg-gray-200 rounded">9</button>
+            <button data-operator="divide" class="col-span-1 p-2 bg-gray-200 rounded">/</button>
+            <button data-number="4" class="col-span-1 p-2 bg-gray-200 rounded">4</button>
+            <button data-number="5" class="col-span-1 p-2 bg-gray-200 rounded">5</button>
+            <button data-number="6" class="col-span-1 p-2 bg-gray-200 rounded">6</button>
+            <button data-operator="multiply" class="col-span-1 p-2 bg-gray-200 rounded">*</button>
+            <button data-number="1" class="col-span-1 p-2 bg-gray-200 rounded">1</button>
+            <button data-number="2" class="col-span-1 p-2 bg-gray-200 rounded">2</button>
+            <button data-number="3" class="col-span-1 p-2 bg-gray-200 rounded">3</button>
+            <button data-operator="minus" class="col-span-1 p-2 bg-gray-200 rounded">-</button>
+            <button data-number="0" class="col-span-1 p-2 bg-gray-200 rounded">0</button>
+            <button data-number="." class="col-span-1 p-2 bg-gray-200 rounded">.</button>
+            <button data-equals class="col-span-1 p-2 bg-gray-200 rounded">=</button>
+            <button data-operator="plus" class="col-span-1 p-2 bg-gray-200 rounded">+</button>
+            <button data-clear class="col-span-1 p-2 bg-gray-200 rounded">C</button>
+        </div>
+    </div>
+</body>
+
+<script src="calculator.js"></script>
+</html>
+

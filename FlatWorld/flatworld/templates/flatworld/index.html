@@ -1,0 +1,27 @@
+{% extends "flatworld/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if message %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <div class = "page">
+        <h1> Pewnego ponurego popołudnia...</h1>
+        <img src="{% static 'flatworld/img/lookingforbooks.gif' %}" alt="" class="gif-container">
+        <h3> Przeglądając podręczną biblioteczkę, natknąłeś się na ciekawą książkę.
+             Ku Twemu zdumieniu, po jej stronach - jak gdyby nigdy nic - biegaly sobie dwuwymiarowe ludziki.
+             Zżera Cię nuda, więc to czas pouprzykrzać im życie...
+        </h3>
+        {% if adventure_exists %} 
+            <button class="btn" id="confirmation">Zacznij przygodę</button>
+        {% else %}
+        <form action="{% url 'generateWorld' %}" method="get">
+            <button class="btn">Zacznij przygodę</button>
+        </form>
+        {% endif %}
+    </div>
+
+{% endblock %}

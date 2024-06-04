@@ -1,0 +1,41 @@
+{% extends "flatworld/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if message %}
+    <div class="alert alert-info">
+        {{ message }}
+    </div>
+    {% endif %}
+    
+    <div class = "page">
+        <h1> Aktualny bieg historii </h1>
+    </div>
+    <div class = "page">
+        {% if world_points %}
+        <h3> Świat składa się z: {{ world_points }} punktów</h3>
+        {% endif %}
+        {% if world %}
+            <img src="{{ world.url }}" alt="">
+        {% endif %}
+        {% if hull_points %}
+            <h3> Liczba punktów w otoczce: {{ hull_points }}</h3>
+        {% endif %}
+    </div>
+    <div class = "page">
+        {% if inhabitants %}
+            <h3> W krainie żyje: {{ inhabitants }} mieszkańców</h3>
+            <h3> Wśród nich: </h3>
+            <h3> Lubi się: {{ same_personality_count }} </h3>
+            <h3> Ma ręce w przeciwną stronę: {{ different_direction_count }} </h3>
+            <h3> Udalo się dobrać dla: {{ bearers }} par </h3>
+        {% endif %}
+        {% if factory %}
+            <h3> Fabryka znajduje się w punkcie {{ factory }} </h3>
+        {% endif %}
+    </div>
+    <div class = "page">
+        <h3> dupa dupa </h3>
+    </div>
+
+{% endblock %}

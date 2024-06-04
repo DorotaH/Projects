@@ -1,0 +1,42 @@
+{% extends "flatworld/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <div class = "page">
+        {% if fence_cost %}
+            <h1> Gratulacje! Płotek został zbudowany! </h1>
+            <h2> Koszt budowy: <span class="green-text"> {{ fence.cost }}</span> zł </h2>
+        {% else %}
+            <h1> Płotek wkrótce stanie się faktem! </h1>
+            <div class="pageFlex">
+                <div class="dividedPage" id="left">
+                    <h3> Obrazek dostępnych w krainie dróg: </h3> 
+                    <img src="{{ fence.url }}" alt=""></br>
+                </div>
+                <div class="dividedPage" id="right">
+                    <h3> Lista sąsiadów dla grafu dróg </h3>
+                    <button id="showTable" class="btn">Pokaż tabelę</button>
+                    <table id="neighborsTable" style="width: 100%; max-width: 600px; font-size: 16px; display: none;">
+                        <tr>
+                            {% for key in neighbors.keys %}
+                                <th>{{ key }}</th>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            {% for values in neighbors.values %}
+                                <td>{{ values|join:" " }}</td>
+                            {% endfor %}
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <button id="generateFence" class="btn">Oblicz koszt budowy płotu</button>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'flatworld/fence.js' %}" type="module"></script>
+{% endblock %}

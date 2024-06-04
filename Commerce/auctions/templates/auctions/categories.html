@@ -1,0 +1,15 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+  <h2>Categories:</h2>
+
+  <div class="row mx-3">
+    {% for category in categories %}
+      <div class="card-body">
+        <div class="card-title">
+          <a style="font-size: 30px; color: #000; text-decoration: none;" href="{% url 'category' name = category.name %}">{{ category.name }}</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

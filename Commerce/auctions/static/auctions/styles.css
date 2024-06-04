@@ -1,0 +1,7 @@
+body {
+    padding: 10px;
+}
+a:hover {
+    text-decoration: underline;
+    color: rgb(70, 65, 65)
+}

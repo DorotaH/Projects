@@ -1,0 +1,144 @@
+:root {
+    --light-background: #ffffff;
+    --light-text: #000000;
+    --dark-background: #1b1a1a;
+    --dark-text: #ffffff;
+    --light-card: #f0f0f0;
+    --dark-card: #313131;
+    --light-navbar: #e0e0e0; 
+    --dark-navbar: #282828;
+}
+
+body {
+    background-color: var(--light-background);
+    color: var(--light-text);
+}
+
+body.dark-mode {
+    background-color: var(--dark-background);
+    color: var(--dark-text);
+}
+
+.navbar {
+    background-color: var(--light-navbar); 
+}
+
+.navbar-brand {
+    color: black !important;
+}
+
+.navbar-brand:hover {
+    color: gray !important; 
+}
+body.dark-mode .navbar {
+    background-color: var(--dark-navbar);
+}
+.nav-link {
+    color: black !important;
+}
+
+.nav-link:hover {
+    color: gray !important;
+}
+
+#mode-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 0.8em;
+}
+
+.card {
+    display: block;
+    padding: 20px;
+    margin-top: 10px;
+    line-height: 0.7;
+    animation: fadeIn 0.6s ease-in;
+    transition: transform 0.3s ease-in-out;
+    background-color: var(--light-card); 
+}
+
+body.dark-mode .card {
+    background-color: var(--dark-card);
+}
+
+.card:hover {
+    transform: scale(1.005);
+}
+.body {
+    margin: 8px;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+.area{
+    resize:none; 
+    display: block;
+    margin-left: auto; 
+    margin-right: auto; 
+    width:100%;
+    background-color: var(--light-card);
+}
+body.dark-mode .area {
+    background-color: rgb(180, 180, 180);
+}
+.modal {
+    display: block;
+    width: 90%;
+    height: 40%;
+    background: #f1f0f0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.username {
+    display: inline-block;
+    text-decoration: none;
+    color: rgb(150, 144, 148);
+    font-size: large;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.username:hover {
+    text-decoration: none;
+    color: rgb(192, 184, 189);
+}
+
+.edit {
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+#follow-button{
+    margin-left: 18px
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.pagination a {
+    margin: 0 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    background-color: #c9c4c4;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #f1eded;
+}

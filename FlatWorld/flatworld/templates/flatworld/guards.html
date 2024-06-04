@@ -1,0 +1,37 @@
+{% extends "flatworld/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if days %}
+        <div class="page">
+            <h2> Strażnicy zatrzymują się co <span class="green-text">{{steps}}</span> kroków</h2>
+            {% for day in days %}
+                <div class="pageFlex">
+                    <div class="dividedPage">
+                        <h2> Dzień; <span class="green-text">{{day.day}}</span></h2>
+                        <h3> Id strażnika: <span class="green-text">{{ day.person_id }}</span></h3>
+                        <h3> Punkty zatrzymania: <span class="green-text">{{ day.stop_points }}</span> </h3>
+                        <h3> Miejsca odsłuchania piosenek: <span class="green-text">{{ day.songs }}</span></h3>
+                        <h3> Ilość odsłuchania piosenki: <span class="green-text">{{ day.songs|length }}</span></h3>
+                    </div>
+                    <div class="dividedPage">
+                        <img src="{{ day.image.url }}" alt="">
+                    </div>
+                </div> 
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class = "page">
+            <h1> Zauważyłeś że wśród płaszczaków wyłonili się strażnicy płotu</h1>
+            <label for="inputPoints">Co ile kroków zatrzymują się strażnicy?</label></br>
+            <input type="number" id="inputPoints" placeholder="Wprowadź więcej niż 1 krok"></br></br>
+            <button id="generateGuards" class="btn">Wygeneruj harmonogram na 7 dni</button>
+        </div>
+    {% endif %}
+    
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'flatworld/guards.js' %}" type="module"></script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "flatworld/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if message %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <div class = "page">
+        {% if world %}
+        <h1> Świat </h1>
+            <h3> Twoja kraina składa się z: <span class="green-text">{{world_points}}</span> punktów</h3>
+            <img src="{{ world.url }}" alt="">
+            <h3> Liczba punktów w otoczce: <span class="green-text"> {{ hull_points }}</span></h3>
+            <form action="/song" method="get">
+                <button class="btn">Kontynuuj</button>
+        {% else %}
+            <h1> Na kartach widnieje zarys jakiejś Krainy</h1>
+            <h3 id="inputPointsGenerated1"> Kraina ma ... </h3>
+            <button id="generateSmallWorld" class="btn"> Wygeneruj małą Krainę</button>
+            <button id="generateMediumWorld" class="btn"> Wygeneruj średnią Krainę</button>
+            <button id="generateBigWorld" class="btn"> Wygeneruj dużą Krainę</button>
+            <h3 id="inputPointsGenerated2"> lub: </h3>
+            <input id="inputPoints" type="number" placeholder="liczba punktow wieksza niz 3"></input></br>
+            <button id="customWorld">Wygeneruj</button> 
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'flatworld/world.js' %}" type="module"></script>
+{% endblock %}

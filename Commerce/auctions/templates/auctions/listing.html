@@ -1,0 +1,91 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    <div class="container">
+        {% if message %}
+            {% if winner_msg %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    {% if not listing.active and user == listing.winner %}
+        <div class="alert alert-success" role="alert">
+            Congratulations! You won the Auction!
+        </div>
+    {% endif %}
+
+
+    <h2>Listing: {{ listing.title }}</h2>
+    <img src="{{ listing.image }}" height="200px">
+    <p>Description: {{ listing.description }}</p>
+    <h3>Price: {{ listing.starting_bid }}$</h3>
+
+    {% if user.is_authenticated and listing.active %}
+    <form action="{% url 'bid' listing.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="bid">Bid:</label>
+            <input type="number" id="bid" name="amount" min="{{ listing.starting_bid }}+1" value="{{ listing.starting_bid }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Bid</button>
+    </form>
+    <p><p>
+    
+    <div>
+        {% if ListingInWatchlist %}
+            <form action="{% url 'removeWatchlist' id=listing.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Remove from Watchlist</button>
+            </form>
+        {% else %}
+            <form action="{% url 'addWatchlist' id=listing.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success">Add to Watchlist</button>
+            </form>
+        {% endif %}
+    <p>    
+    </div>
+    
+    {% if user == listing.author %}
+        <a href="{% url 'endAuction' listing.id %}" class="btn btn-primary">End Auction</a>
+    {% endif %}
+    {% endif %}
+    <p><p><p>
+    <h4> Details </h4>
+        <p>Author: {{ listing.author }}</p>
+        <p>Category: {{ listing.category }}</p>
+        {% if not listing.isActive %}
+            <p>Winner: {{ listing.winner }}</p>
+        {% endif %}
+
+    <p>
+    
+    <h4>Comments</h4>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.commenter }}: {{ comment.comment }}</li>
+        {% endfor %}
+    </ul>
+    {% if user.is_authenticated and listing.active %}
+    <form action="{% url 'comment' listing.id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Comment</button>
+    {% endif %}
+    
+    
+
+
+    
+{% endblock %}

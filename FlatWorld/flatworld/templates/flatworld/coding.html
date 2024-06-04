@@ -1,0 +1,62 @@
+{% extends "flatworld/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <div class = "page">
+        {% if coded_song %}
+            <div class="pageFlex">
+                <div class="dividedPage" id="left">
+                    <h1> Kod Piosenki </h1>
+                    <table>
+                        <tr>
+                            <th>Klucz</th>
+                            <th>Wartość</th>
+                        </tr>
+                        {% for key, value in code.items %}
+                            <tr>
+                                <td>
+                                    {% if key == " " %}
+                                        " "
+                                    {% elif key == newline %}
+                                        "\n"
+                                    {% else %}
+                                        {{ key }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ value }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="dividedPage" id="right">
+                    <h1> Zakodowana Piosenka </h1>
+                    <div class="borderPage">
+                        <h3 style="word-break: break-all;"> {{ coded_song }} </h3>
+                    </div>
+                    <h1> Odkodowana Piosenka </h1>
+                        <h3>{{ uncoded_song }} </h3>
+                </div>
+            </div>
+        {% else %}
+            <h1> Płaszczakowy informatyk agresywnie wklikuje znaczki w komputer... </h1> 
+            <div class="pageFlex">
+                <div class="dividedPage" id="left">
+                    <h3 id="text1"> Chcesz wygenerować kod istniejącej piosenki? </h3>
+                    <button id="generateCode" class="btn">Generuj kod istniejącej piosenki</button>
+                </div>
+                <div class="dividedPage" id="right">
+                    <h3 id="text2"> chcesz wygenerować własną piosenkę? </h3> 
+                    <input id="inputText" type="text" placeholder="Piosenka"></input><br /><br />
+                    <button id="generateNewCode" class="btn">Generuj własną piosenkę</button> 
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'flatworld/coding.js' %}" type="module"></script>
+{% endblock %}

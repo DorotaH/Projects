@@ -1,0 +1,1 @@
+# TODO funkcja w factory

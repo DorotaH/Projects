@@ -1,0 +1,53 @@
+{% extends "flatworld/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if changed_song %}
+        <div class="page">
+            <h1>Piosenka: </h1>  
+            <div class="dividedPage" id='allcontent'>
+                {% for word in song_words %}
+                    {% if forloop.counter|stringformat:"s" in indexes %}
+                        <span class="green-text" style="font-size: 1.10em;"> {{ word }} </span>
+                    {% else %}
+                        <span style="font-size: 1.10em;"> {{ word }} </span>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:"5" %}
+                        <br>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <h1>Zmieniona piosenka: </h1>
+            <div class="dividedPage">
+                {% for word in changed_song %}
+                    {% if forloop.counter|stringformat:"s" in indexes %}
+                        <span class="green-text" style="font-size: 1.10em;"> {{ word }} </span>
+                    {% else %}
+                        <span style="font-size: 1.10em;"> {{ word }} </span>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:"5" %}
+                        <br>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class = "page" id="modal">
+            <div id ="menu">
+                <h1>Wyrządzasz psoty dla płaszczakowej piosenki...</h1>
+                <h1> Pieśń: </h1>
+                {% for word in song_words %}
+                    <button class="btn" id="word-{{ forloop.counter }}">{{ word }}</button>
+                    {% if forloop.counter|divisibleby:"5" %}
+                        <br>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'flatworld/song.js' %}" type="module"></script>
+{% endblock %}
